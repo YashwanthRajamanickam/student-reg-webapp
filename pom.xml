@@ -12,7 +12,7 @@
 		<java.version>17</java.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<sonar.host.url>http://13.235.71.136:9000/</sonar.host.url>
+		<sonar.host.url>http://65.2.75.170:9000/</sonar.host.url>
 		<sonar.token>sqa_fca58c5c70fa773c93bf92d612f32473a0d0c192</sonar.token>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
@@ -25,11 +25,11 @@
     <distributionManagement>
 		<repository>
 			<id>nexus</id>
-			<url>http://3.109.133.41:8081/repository/Maven_studentregweb-Release/</url>
+			<url>http://13.235.51.150:8081/repository/Maven_studentregweb-Release/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus</id>
-			<url>http://3.109.133.41:8081/repository/Maven_studentregweb-SNAPSHOT/</url>
+			<url>http://13.235.51.150:8081/repository/Maven_studentregweb-SNAPSHOT/</url>
 		</snapshotRepository>
     </distributionManagement>
 
