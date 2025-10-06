@@ -29,7 +29,7 @@
 		</repository>
 		<snapshotRepository>
 			<id>nexus</id>
-			<url>http://15.206.167.240:8081/repository/Maven_studentregweb-SNAPSHOT/</url>
+			<url>http://15.206.167.240:8081/repository/Maven_studentregweb-SNAPSHOT//</url>
 		</snapshotRepository>
     </distributionManagement>
 
