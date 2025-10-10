@@ -57,7 +57,7 @@ node {
         currentBuild.result="FAILURE"
     }
     finally{
-        sh "echo'${e.getMessage()}'"
+        
     def buildStatus = currentBuild.currentResult
     if (buildStatus == 'SUCCESS') {
     emailext body: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
