@@ -63,5 +63,15 @@ node {
     }else {
     emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
     }
+
+    if (buildStatus == 'SUCCESS') {
+    slackSend channel: 'devops-operations', message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
+     }
+    else {
+        slackSend channel: 'devops-operations', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
+   
+      }
+    
+
     
 }}
