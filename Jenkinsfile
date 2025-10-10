@@ -1,4 +1,5 @@
 node {
+    try{
     def Tomcat_Ip='13.234.67.39'
     def mvnhome=tool name: 'Maven-3.9.11', type: 'maven'
     stage('Clone') {
@@ -50,4 +51,21 @@ node {
         """
     }
 }
+    }
+    catch(Exception e){
+        sh "echo 'The build is failed:${e.getMessage()}'"
+        currentBuild.result="FAILURE"
+    }
+    finally{
+    def buildStatus = currentBuild.result
+    if (buildStatus == 'SUCCESS') {
+    emailext body: '${env.JOB_NAME}. 
+    The Build has been Passed and please check the logs on ${env.BUILD_URL}', 
+    subject: '${env.BUILD_NUMBER}', to: 'yashwanthr2498@gmail.com'
+    }else {
+     emailext body: '${env.JOB_NAME}. 
+    The Build has been Failed and please check the logs on ${env.BUILD_URL}', 
+    subject: '${env.BUILD_NUMBER}', to: 'yashwanthr2498@gmail.com'
+    }
+    
 }
