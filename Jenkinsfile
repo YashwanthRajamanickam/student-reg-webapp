@@ -64,4 +64,4 @@ node {
      emailext body: "${env.JOB_NAME}.The Build has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER}", to: "yashwanthr2498@gmail.com"
     }
     
-}
+}}
