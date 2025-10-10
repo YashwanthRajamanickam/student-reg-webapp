@@ -57,15 +57,15 @@ node {
         currentBuild.result="FAILURE"
     }
     finally{
-    def buildStatus = currentBuild.result
+    def buildStatus = currentBuild.currentResult
     if (buildStatus == 'SUCCESS') {
-    emailext body: '${env.JOB_NAME}. 
-    The Build has been Passed and please check the logs on ${env.BUILD_URL}', 
-    subject: '${env.BUILD_NUMBER}', to: 'yashwanthr2498@gmail.com'
+    emailext body: "${env.JOB_NAME}. 
+    The Build has been Passed and please check the logs on ${env.BUILD_URL}", 
+    subject: "${env.BUILD_NUMBER}", to: "yashwanthr2498@gmail.com"
     }else {
-     emailext body: '${env.JOB_NAME}. 
-    The Build has been Failed and please check the logs on ${env.BUILD_URL}', 
-    subject: '${env.BUILD_NUMBER}', to: 'yashwanthr2498@gmail.com'
+     emailext body: "${env.JOB_NAME}. 
+    The Build has been Failed and please check the logs on ${env.BUILD_URL}", 
+    subject: "${env.BUILD_NUMBER}", to: "yashwanthr2498@gmail.com"
     }
     
 }
