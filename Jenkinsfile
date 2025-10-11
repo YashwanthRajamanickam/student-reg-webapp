@@ -3,7 +3,7 @@ node {
     def Tomcat_Ip='13.234.67.39'
     def mvnhome=tool name: 'Maven-3.9.11', type: 'maven'
     stage('Clone') {
-               git branch: 'development', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
+               git branch: 'develop', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
     }
     
     stage('Build'){
@@ -52,9 +52,9 @@ node {
     }
 }
     }
-    catch(Exception e){
-        sh "echo 'The build is failed:${e.getMessage()}'"
-        currentBuild.result="FAILURE"
+     catch(err){
+        sh "echo 'The build is failed as an error occured: ${e.getMessage()}'"
+        currentBuild.result='FAILURE'
         slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
     }
     // finally{
