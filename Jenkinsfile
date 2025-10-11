@@ -83,10 +83,10 @@ node {
 finally{
     def buildStatus = currentBuild.currentResult
     if (buildStatus == 'SUCCESS'){
-    emailext body: '''Build Successful
+    emailext body: "Build Successful
     Job : ${env.JOB_NAME}
     Build Number : #${env.BUILD_NUMBER}
-    Logs : ${env.BUILD_URL}''', subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com'
+    Logs : ${env.BUILD_URL}", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com'
     }
     }
 }
