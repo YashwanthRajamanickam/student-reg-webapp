@@ -98,3 +98,4 @@ Logs : ${env.BUILD_URL}""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_N
     }
     }
 }
+}
