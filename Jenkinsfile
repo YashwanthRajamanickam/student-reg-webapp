@@ -89,7 +89,7 @@ Job : "${env.JOB_NAME}
 Build Number : #${env.BUILD_NUMBER}
 Logs : ${env.BUILD_URL}""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com'
     }
-     if (buildStatus! == 'SUCCESS'){
+     if (buildStatus ! = 'SUCCESS'){
     emailext body: 
     """"<b>Build</b> Failure!"
 Job : "${env.JOB_NAME}
