@@ -53,8 +53,8 @@ node {
 }
     }
      catch(err){
-        echo "The build is failed as an error occured: ${err.getMessage()}"
-        currentBuild.result='FAILURE'
+        echo "The build has failed due to an error: ${err.getMessage()}"
+        currentBuild.result = 'FAILURE'
         def buildStatus = currentBuild.currentResult
         emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
         slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
