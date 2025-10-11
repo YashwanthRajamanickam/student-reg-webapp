@@ -3,7 +3,7 @@ node {
     def Tomcat_Ip='13.234.67.39'
     def mvnhome=tool name: 'Maven-3.9.11', type: 'maven'
     stage('Clone') {
-               git branch: 'development', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
+               git branch: 'developm', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
     }
     
     stage('Build'){
@@ -53,7 +53,7 @@ node {
 }
     }
      catch(err){
-        sh "echo The build is failed as an error occured: ${err.getMessage()}"
+        sh "echo 'The build is failed as an error occured: ${err.getMessage()}'"
         currentBuild.result='FAILURE'
         def buildStatus = currentBuild.currentResult
         emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
