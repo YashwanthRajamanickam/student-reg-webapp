@@ -53,8 +53,7 @@ node {
 }
     }
      catch(err){
-        def errorMessage = err.getMessage()
-        sh "echo 'The build is failed as an error occured: ${errorMessage}'"
+        sh "echo 'The build is failed as an error occured: ${err.getMessage()}'"
         currentBuild.result='FAILURE'
         def buildStatus = currentBuild.currentResult
         emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
