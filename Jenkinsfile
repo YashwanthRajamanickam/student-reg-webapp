@@ -59,31 +59,14 @@ node {
         emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
         slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
     }
-//     finally{
-        
-//     def buildStatus = currentBuild.currentResult
-//     if (buildStatus == 'SUCCESS') {
-//     emailext body: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
-//     }else {
-//     emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
-//     }
-
-//     if (buildStatus == 'SUCCESS') {
-//      slackSend channel: 'devops-operations', color: 'good', message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
-//       }
-//     else {
-//      slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
- 
-//       }
-    
-
-    
-// }
 
 finally{
     def buildStatus = currentBuild.currentResult
     if (buildStatus == 'SUCCESS'){
-         slackSend channel: 'devops-operations', color: 'good', message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
+         slackSend 
+         (channel: 'devops-operations', 
+         color: 'good', 
+         message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}")
     emailext (body: 
     """<p><b><span style="color:green;">Build Success</span></b>.</p>
 <p><b>Job</b> : "${env.JOB_NAME}</p>
@@ -92,6 +75,7 @@ finally{
 mimeType: 'text/html'
     ) }else{
      if (buildStatus != 'SUCCESS'){
+        slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
     emailext (body: 
     """<p><b><span style="color:red;">Build Failure</span></b>.</p>
 <p><b>Job</b> : "${env.JOB_NAME}</p>
