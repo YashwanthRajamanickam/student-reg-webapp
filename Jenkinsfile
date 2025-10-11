@@ -55,24 +55,26 @@ node {
     catch(Exception e){
         sh "echo 'The build is failed:${e.getMessage()}'"
         currentBuild.result="FAILURE"
+        slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
     }
-    finally{
+    // finally{
         
-    def buildStatus = currentBuild.currentResult
-    if (buildStatus == 'SUCCESS') {
-    emailext body: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
-    }else {
-    emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
-    }
+    // def buildStatus = currentBuild.currentResult
+    // if (buildStatus == 'SUCCESS') {
+    // emailext body: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
+    // }else {
+    // emailext body: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL}", subject: "${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}", to: 'yashwanthr2498@gmail.com'
+    // }
 
-    if (buildStatus == 'SUCCESS') {
-    slackSend channel: 'devops-operations', message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
-     }
-    else {
-        slackSend channel: 'devops-operations', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
-   
-      }
+    // if (buildStatus == 'SUCCESS') {
+    //  slackSend channel: 'devops-operations', color: 'good', message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
+     //  }
+    // else {
+    //  slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
+ 
+    //   }
     
 
     
-}}
+//}
+}
