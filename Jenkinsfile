@@ -92,9 +92,9 @@ Logs : ${env.BUILD_URL}""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_N
      if (buildStatus != 'SUCCESS'){
     emailext (body: 
     """<p><b>Build Failure</b></p>
-<p>Job : "${env.JOB_NAME}</p>
-<p>Build Number : #${env.BUILD_NUMBER}</p>
-<p>Logs : <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
+<p><b>Job</b> : "${env.JOB_NAME}</p>
+<p><b>Build Number</b> : #${env.BUILD_NUMBER}</p>
+<p><b>Logs</b> : <a href="${env.BUILD_URL}"> Click here to view the logs</a></p>""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
 mimeType: 'text/html'
     )
     }
