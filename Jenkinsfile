@@ -94,7 +94,7 @@ Logs : ${env.BUILD_URL}""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_N
     """<p><b><span style="color:red;">Build Failure</span></b>.</p>
 <p><b>Job</b> : "${env.JOB_NAME}</p>
 <p><b>Build Number</b> : #${env.BUILD_NUMBER}</p>
-<p><a href="${env.BUILD_URL}"> Click here to view the logs</a></p>""", subject: "Jenkins Build <p><b><span style="color:red;">${buildStatus}</span></b>.</p> : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
+<p><a href="${env.BUILD_URL}"> Click here to view the logs</a></p>""", subject: "Jenkins Build <p><b><span style="color:red;">(${buildStatus})</span></b>.</p> : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
 mimeType: 'text/html'
     )
     }
