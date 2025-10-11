@@ -83,6 +83,7 @@ node {
 finally{
     def buildStatus = currentBuild.currentResult
     if (buildStatus == 'SUCCESS'){
+         slackSend channel: 'devops-operations', color: 'good', message: "The Build for ${env.JOB_NAME} has been Passed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
     emailext (body: 
     """<p><b><span style="color:green;">Build Success</span></b>.</p>
 <p><b>Job</b> : "${env.JOB_NAME}</p>
