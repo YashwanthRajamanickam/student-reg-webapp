@@ -65,8 +65,8 @@ finally{
     if (buildStatus == 'SUCCESS'){
          slackSend(
     channel: 'devops-operations',
-    color: 'good', 
-    message: "The Build for ${env.JOB_NAME} has been *PASSED* and please check the logs: <${env.BUILD_URL}|Click here>. More info: ${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
+    color: 'good', // green sidebar
+    message: "The Build for ${env.JOB_NAME} has been *PASSED*. Build is *${buildStatus}*. Check logs: <${env.BUILD_URL}|Click here>"
 )
  emailext (body: 
     """<p><b><span style="color:green;">Build Success</span></b>.</p>
