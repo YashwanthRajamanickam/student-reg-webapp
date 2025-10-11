@@ -3,12 +3,12 @@ node {
     def Tomcat_Ip='13.234.67.39'
     def mvnhome=tool name: 'Maven-3.9.11', type: 'maven'
     stage('Clone') {
-               git branch: 'developm', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
+               git branch: 'development', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
     }
     
     stage('Build'){
         sh """
-            ${mvnhome}/bin/mvn clean package 
+            ${mvnhome}/bin/mvn clen package 
             echo "build success"
             """
     }
