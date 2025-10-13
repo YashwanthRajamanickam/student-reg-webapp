@@ -1,6 +1,6 @@
 node {
     try{
-    def Tomcat_Ip='35.154.72.248'
+    def Tomcat_Ip='3.110.188.29'
     def mvnhome=tool name: 'Maven-3.9.11', type: 'maven'
     stage('Clone') {
                git branch: 'development', credentialsId: 'Yashwanth_Studentwebapp', url: 'https://github.com/YashwanthRajamanickam/student-reg-webapp.git'
