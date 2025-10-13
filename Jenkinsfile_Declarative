@@ -3,10 +3,15 @@ pipeline{
     triggers {
         githubPush()
          }
+         options {
+  buildDiscarder logRotator(numToKeepStr: '5')
+}
+
 
     environment{
         Tomcat_Ip='3.110.188.29'
         SonarQube_Token=credentials('SonarQube')
+        buildStatus = currentBuild.currentResult
     }
     tools{
         maven 'Maven-3.9.11'
