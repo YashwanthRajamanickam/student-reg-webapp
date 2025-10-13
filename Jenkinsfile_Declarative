@@ -70,8 +70,6 @@ pipeline{
 mimeType: 'text/html'
     )
     }
-    
-        }
         success{
          slackSend(
     channel: 'devops-operations',
@@ -86,5 +84,5 @@ mimeType: 'text/html'
 mimeType: 'text/html'
     ) }
 
-        
+    }
     }
