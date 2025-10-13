@@ -11,7 +11,7 @@ pipeline{
     environment{
         Tomcat_Ip='3.110.188.29'
         SonarQube_Token=credentials('SonarQube')
-        buildStatus = currentBuild.currentResult
+       
     }
     tools{
         maven 'Maven-3.9.11'
@@ -66,6 +66,8 @@ pipeline{
     }
     post{
         failure{
+            script{
+                 def buildStatus = currentBuild.currentResult
         slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
     emailext (body: 
     """<p><b><span style="color:red;">Build Failure</span></b>.</p>
@@ -75,7 +77,10 @@ pipeline{
 mimeType: 'text/html'
     )
     }
+        }
         success{
+            script{
+                 def buildStatus = currentBuild.currentResult
          slackSend(
     channel: 'devops-operations',
     color: 'good', // green sidebar
@@ -88,6 +93,7 @@ mimeType: 'text/html'
 <p><a href="${env.BUILD_URL}"> Click here to view the logs</a></p>""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
 mimeType: 'text/html'
     ) }
+        }
 
     }
     }
