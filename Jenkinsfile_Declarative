@@ -1,3 +1,4 @@
+@Library('mavenBuild_Library.groovy') _
 pipeline{
     agent any
     triggers {
@@ -24,7 +25,7 @@ pipeline{
         }
         stage('Building the package'){
             steps{
-                sh "mvn clean package"
+                building the package
             }
         }
          stage('Testing the package'){
