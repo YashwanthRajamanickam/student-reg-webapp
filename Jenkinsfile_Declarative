@@ -64,11 +64,11 @@ pipeline{
                 }
             }
         
-       stage('for brannch feature-logs'){
+       stage('for brannch feature-main'){
                 when {
-                    branch 'feature-logs'
+                    branch 'feature-main'
                      steps{
-                       sh " echo this is feature logs branch"
+                       sh " echo this is feature main branch"
                 }
                 }
             }
