@@ -25,7 +25,7 @@ pipeline{
         }
         stage('Building the package'){
             steps{
-                building the package
+                mavenBuild_Library
             }
         }
          stage('Testing the package'){
