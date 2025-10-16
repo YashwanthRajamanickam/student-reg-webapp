@@ -37,31 +37,41 @@ pipeline{
                sh "mvn deploy"
             }
         }
-         stage('Stopping Tomcat'){
-            steps{
+         stage('deploying to Tomcat'){
+            when {
+                branch 'development'
+                steps{
                 sshagent(['Tomcat']) {
                sh """
+               echo Stopping the Tomcat Server
                ssh -o StrictHostKeyChecking=no ec2-user@${Tomcat_Ip} 'cd /opt/tomcat/bin/ && sudo ./shutdown.sh'
-                """
-                }
-            }
-        }
-         stage('Deploying the package to TOMCAT'){
-            steps{
-                sshagent(['Tomcat']) {
-                 sh "scp -o StrictHostKeyChecking=no target/student-reg-webapp.war ec2-user@${Tomcat_Ip}:/opt/tomcat/webapps/"
-             }
-                   }
-         }
-         stage('Starting Tomcat'){
-            steps{
-                sshagent(['Tomcat']) {
-               sh """
+               echo deploying the new war file
+               scp -o StrictHostKeyChecking=no target/student-reg-webapp.war ec2-user@${Tomcat_Ip}:/opt/tomcat/webapps/"
+               echo Starting the Tomcat Server
                ssh -o StrictHostKeyChecking=no ec2-user@${Tomcat_Ip} 'cd /opt/tomcat/bin/ && sudo ./startup.sh'
                 """
                 }
+                }
             }
         }
+         
+         stage('for brannch feature-logs'){
+                when {
+                    branch 'feature-logs'
+                     steps{
+                       sh " echo this is feature logs branch"
+                }
+                }
+            }
+        
+       stage('for brannch feature-logs'){
+                when {
+                    branch 'feature-logs'
+                     steps{
+                       sh " echo this is feature logs branch"
+                }
+                }
+            }
         
     }
     post{
