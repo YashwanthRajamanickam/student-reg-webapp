@@ -1,4 +1,4 @@
-@Library('mavenBuild_Library.groovy') _
+@Library('mavenBuild_Library') _
 pipeline{
     agent any
     triggers {
