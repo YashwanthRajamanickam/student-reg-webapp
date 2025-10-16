@@ -1,4 +1,4 @@
-@Library('mavenBuild_Library@main') _
+@Library('mavenBuild_Library') _
 pipeline{
     agent any
     triggers {
@@ -47,9 +47,11 @@ pipeline{
                sh """
                echo 'Stopping the Tomcat Server'
                ssh -o StrictHostKeyChecking=no ec2-user@${Tomcat_Ip} 'cd /opt/tomcat/bin/ && sudo ./shutdown.sh'
+
                echo 'deploying the new war file'
                scp -o StrictHostKeyChecking=no target/student-reg-webapp.war ec2-user@${Tomcat_Ip}:/opt/tomcat/webapps/
-               echo 'tarting the Tomcat Server'
+
+               echo 'starting the Tomcat Server'
                ssh -o StrictHostKeyChecking=no ec2-user@${Tomcat_Ip} 'cd /opt/tomcat/bin/ && sudo ./startup.sh'
                 """
                 }
