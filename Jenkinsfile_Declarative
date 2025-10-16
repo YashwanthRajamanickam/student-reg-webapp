@@ -40,6 +40,7 @@ pipeline{
          stage('deploying to Tomcat'){
             when {
                 branch 'development'
+            }
                 steps{
                 sshagent(['Tomcat']) {
                sh """
@@ -51,25 +52,24 @@ pipeline{
                ssh -o StrictHostKeyChecking=no ec2-user@${Tomcat_Ip} 'cd /opt/tomcat/bin/ && sudo ./startup.sh'
                 """
                 }
-                }
             }
         }
          
          stage('for brannch feature-logs'){
                 when {
                     branch 'feature-logs'
+                }
                      steps{
                        sh " echo this is feature logs branch"
-                }
                 }
             }
         
        stage('for brannch feature-main'){
                 when {
                     branch 'feature-main'
+                }
                      steps{
                        sh " echo this is feature main branch"
-                }
                 }
             }
         
