@@ -45,7 +45,7 @@ pipeline{
                 steps{
                 sshagent(['Tomcat']) {
                sh """
-               echo 'Stopping the Tomcat Server'
+               echo 'Stpping the Tomcat Server'
                ssh -o StrictHostKeyChecking=no ec2-user@${Tomcat_Ip} 'cd /opt/tomcat/bin/ && sudo ./shutdown.sh'
 
                echo 'deploying the new war file'
