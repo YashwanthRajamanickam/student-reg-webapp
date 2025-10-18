@@ -86,32 +86,13 @@ pipeline{
     post{
         failure{
             script{
-                 def buildStatus = currentBuild.currentResult
-        slackSend channel: 'devops-operations', color: 'danger', message: "The Build for ${env.JOB_NAME} has been Failed and please check the logs on ${env.BUILD_URL} .More info-${env.BUILD_NUMBER} - ${env.JOB_NAME} - Build is ${buildStatus}"
-    emailext (body: 
-    """<p><b><span style="color:red;">Build Failure</span></b>.</p>
-<p><b>Job</b> : "${env.JOB_NAME}</p>
-<p><b>Build Number</b> : #${env.BUILD_NUMBER}</p>
-<p><a href="${env.BUILD_URL}"> Click here to view the logs</a></p>""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
-mimeType: 'text/html'
-    )
+                 Email_and_slack_notification_on_fail() 
     }
         }
         success{
             script{
-                 def buildStatus = currentBuild.currentResult
-         slackSend(
-    channel: 'devops-operations',
-    color: 'good', // green sidebar
-    message: "The Build for ${env.JOB_NAME} has been *PASSED*. Build is *${buildStatus}*. Check logs: <${env.BUILD_URL}|Click here>"
-)
- emailext (body: 
-    """<p><b><span style="color:green;">Build Success</span></b>.</p>
-<p><b>Job</b> : "${env.JOB_NAME}</p>
-<p><b>Build Number</b> : #${env.BUILD_NUMBER}</p>
-<p><a href="${env.BUILD_URL}"> Click here to view the logs</a></p>""", subject: "Jenkins Build ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}", to: 'yashwanthr2498@gmail.com',
-mimeType: 'text/html'
-    ) }
+                Email_and_slack_notification_on_success()
+                  }
         }
         always{
             cleanWs()
