@@ -35,7 +35,9 @@ pipeline{
          }
          stage('Deploying the package to Artifact repository'){
             steps{
-               sh "mvn deploy"
+               sh """mvn deploy
+               echo "Current Jenkins branch: ${env.BRANCH_NAME}"
+               """
             }
         }
          stage('deploying to Tomcat'){
