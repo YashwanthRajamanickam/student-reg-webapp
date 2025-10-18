@@ -1,0 +1,56 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class StudentWebAppCheck {
+
+    public static void main(String[] args) {
+        // 1️⃣ Path to ChromeDriver — update if needed
+        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver-win64\\chromedriver.exe");
+
+        // 2️⃣ Configure Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless=new"); // comment this line if you want to see the browser window
+
+        // 3️⃣ Initialize WebDriver
+        WebDriver driver = new ChromeDriver(options);
+
+        try {
+            String url = "http://65.2.3.123:8080/student-reg-webapp/";
+            driver.get(url);
+
+            // Wait a bit for the page to load
+            Thread.sleep(2000);
+
+            // 4️⃣ Print page details
+            System.out.println("✅ Page Title: " + driver.getTitle());
+            System.out.println("✅ Current URL: " + driver.getCurrentUrl());
+
+            // 5️⃣ Optional: check if a specific element is present (e.g., heading or login form)
+            try {
+                WebElement header = driver.findElement(By.tagName("h1"));
+                System.out.println("✅ Found heading: " + header.getText());
+            } catch (Exception e) {
+                System.out.println("⚠️ No <h1> heading found on the page.");
+            }
+
+            // 6️⃣ Page verification logic
+            if (driver.getTitle() != null && !driver.getTitle().isEmpty()) {
+                System.out.println("✅ Website loaded successfully!");
+            } else {
+                System.out.println("❌ Website might not have loaded correctly.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Error during test: " + e.getMessage());
+        } finally {
+            // 7️⃣ Quit browser
+            driver.quit();
+            System.out.println("🔒 Browser closed.");
+        }
+    }
+}
