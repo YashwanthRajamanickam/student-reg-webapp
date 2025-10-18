@@ -10,7 +10,7 @@ pipeline{
 
 
     environment{
-        Tomcat_Ip='13.203.227.129'
+        Tomcat_Ip='65.2.3.123'
         SonarQube_Token=credentials('SonarQube')
        
     }
