@@ -83,6 +83,7 @@ pipeline{
                build job: 'selenium_test', wait: true
             }
             }
+    }
     post{
         failure{
             script{
@@ -100,4 +101,3 @@ pipeline{
 
     }
     }
-}
