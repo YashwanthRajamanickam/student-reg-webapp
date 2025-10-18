@@ -12,6 +12,7 @@ pipeline{
     environment{
         Tomcat_Ip='65.2.3.123'
         SonarQube_Token=credentials('SonarQube')
+        BRANCH_NAME = 'development'
        
     }
     tools{
