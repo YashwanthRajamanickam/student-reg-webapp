@@ -78,11 +78,11 @@ pipeline{
                        sh " echo this is feature main branch"
                 }
             }
-            stage('Automation_validation_trigger'){
-            steps{
+        stage('Automation_validation_trigger'){
+                steps{
                build job: 'selenium_test', wait: true
             }
-    }
+            }
     post{
         failure{
             script{
