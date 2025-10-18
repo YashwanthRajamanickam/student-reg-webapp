@@ -78,9 +78,9 @@ pipeline{
                        sh " echo this is feature main branch"
                 }
             }
-        stage('Automation_validation_trigger'){
+        stage('Static_web-app-Directive Pipeline'){
                 steps{
-               build job: 'selenium_test', wait: true
+               build job: 'Static_web-app-Directive Pipeline', wait: true
             }
             }
     }
